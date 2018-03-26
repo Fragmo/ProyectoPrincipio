@@ -72,6 +72,9 @@ and open the template in the editor.
             <script>
     var ayuda = false;
     var contador = 1; 
+    //Para cargar el 1 ejercicio
+    $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
+    
     //para el boton de ayuda
     function apareceAyuda(){
         if(!ayuda){
@@ -88,10 +91,10 @@ and open the template in the editor.
     $(document).ready(function(){
         $('#BotonMas').click(function(){
             console.log("el AJAX funcionaaaaaa");
-        $("#ejercicio").load("BotonMas.html");
+        $("#ejercicio").load("AjaxEjercicio.php");
                                     });
         $('#BotonMenos').click(function(){
-        $("#ejercicio").load("BotonMenos.html");
+        $("#ejercicio").load("BotonMenos.php");
                                     });
                                     });
     
@@ -108,8 +111,9 @@ and open the template in the editor.
         $('#spanTotal').text($('#spanTotal').text());
        // $("#").load("BotonMas.html");
       //  $.post('AjaxGuarro.php',{postContador:contador});
-       $('#ejercicio').load('AjaxGuarro.php?');
-       
+       $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
+
+        
         
         return contador;
         }
@@ -124,6 +128,7 @@ and open the template in the editor.
         contador--;
         $('#spanContador').text(contador);
         $('#spanTotal').text($('#spanTotal').text());
+        $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
         return contador;
         }
 
