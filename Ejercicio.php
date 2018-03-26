@@ -73,7 +73,7 @@ and open the template in the editor.
     var ayuda = false;
     var contador = 1; 
     //Para cargar el 1 ejercicio
-    $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
+    actualizaAjax();
     
     //para el boton de ayuda
     function apareceAyuda(){
@@ -86,22 +86,12 @@ and open the template in the editor.
         }
         return ayuda;
     }
-    //AJAAAAAAAAAAAAAX
-    //de momento no va
-    $(document).ready(function(){
-        $('#BotonMas').click(function(){
-            console.log("el AJAX funcionaaaaaa");
-        $("#ejercicio").load("AjaxEjercicio.php");
-                                    });
-        $('#BotonMenos').click(function(){
-        $("#ejercicio").load("BotonMenos.php");
-                                    });
-                                    });
-    
-    //FIN AJAAAAAAAAAAAAAX
     
     
-    
+    function actualizaAjax(){
+         $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
+         $('#textoAyuda').load('AjaxBotonAyuda.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
+    }
     
     function sumaEjercicio (){
        // actualización de contador
@@ -109,12 +99,7 @@ and open the template in the editor.
         contador++;
         $('#spanContador').text(contador);
         $('#spanTotal').text($('#spanTotal').text());
-       // $("#").load("BotonMas.html");
-      //  $.post('AjaxGuarro.php',{postContador:contador});
-       $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
-
-        
-        
+        actualizaAjax();
         return contador;
         }
         // ahora actualizar el contenido del div que muestra el gif
@@ -128,7 +113,7 @@ and open the template in the editor.
         contador--;
         $('#spanContador').text(contador);
         $('#spanTotal').text($('#spanTotal').text());
-        $('#ejercicio').load('AjaxEjercicio.php?tipo=<?php echo $_GET['tipo']?>&nivel=<?php echo $_GET['nivel']?>&id='+contador);
+        actualizaAjax();
         return contador;
         }
 
